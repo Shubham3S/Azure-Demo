@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1517511620798-cec17d428bc0');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: white; /* set default text color */
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      z-index: 1;
+    }
+
+    .login-container {
+      background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .login-container img {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      background-color: #333;
+      color: white;
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .success-container {
+      display: none;
+      text-align: center;
+      z-index: 2;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+    }
+
+    .success-container img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="login-container">
+    <img src="https://via.placeholder.com/80" alt="Logo" />
+    <h2>Login</h2>
+    <form onsubmit="login(event)">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <div id="message"></div>
+    </form>
+  </div>
+
+  <div class="success-container" id="successContainer">
+    <img src="https://via.placeholder.com/200" alt="Success Image" />
+    <h3>Success! You're now logged in.</h3>
+    <p id="randomText"></p>
+  </div>
+
+  <script>
+    function login(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      const messageBox = document.getElementById("message");
+      const successContainer = document.getElementById("successContainer");
+      const randomText = document.getElementById("randomText");
+
+      if (username === "shubh" && password === "abc") {
+        messageBox.textContent = "";
+        successContainer.style.display = "block";
+
+        // Generate some random text
+        const randomMessages = [
+          "The future is yours, keep going!",
+          "Success is the sum of small efforts, repeated day in and day out.",
+          "Believe in yourself and all that you are.",
+          "Your journey has just begun!"
+        ];
+        randomText.textContent = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+      } else {
+        messageBox.textContent = "Incorrect username or password.";
+        successContainer.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
